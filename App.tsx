@@ -1,20 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useFonts, Oxanium_400Regular, Oxanium_700Bold } from '@expo-google-fonts/oxanium'
+import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
+import Home from './src/screens/Home';
 
 export default function App() {
+
+  const [fontsLoaded, error] = useFonts({
+    Oxanium_400Regular,
+    Oxanium_700Bold
+  })
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <StatusBar style="auto" translucent/>
+      {fontsLoaded? 
+        <Home /> : <ActivityIndicator size="large" color="#fff"/>
+      }
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
